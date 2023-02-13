@@ -4,7 +4,7 @@ import React, { useEffect, useContext } from "react";
 import { Context } from "../store/appContext.js";
 
 // Import Components
-import FilmCard from "../component/Card.jsx";
+import FilmCard from "../component/FilmCard.jsx";
 
 export const Films = () => {
   const { store, actions } = useContext(Context);

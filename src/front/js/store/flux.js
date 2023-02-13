@@ -38,11 +38,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					throw Error(error);
 				}
-				
-
-				setStore({
-					films: data.results,
-				});
 			},
 
 			getPlanets: async () => {

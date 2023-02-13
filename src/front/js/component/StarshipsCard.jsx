@@ -9,7 +9,7 @@ import { Context } from "../store/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
-const FilmCard = (props) => {
+const StarshipsCard = (props) => {
   const { actions } = useContext(Context);
 
   return (
@@ -21,11 +21,11 @@ const FilmCard = (props) => {
           alt="..."
         />
         <div className="body text-dark">
-          <h4 className="card-title text-center p-3">{props.title}</h4>
+          <h4 className="card-title text-center p-3">{props.name}</h4>
           <ul className="list-group list-group-flush">
-            <li className="list-group-item">Episode: <span className="text-capitalize">{props.episode_id}</span></li>
-            <li className="list-group-item">Director: <span className="text-capitalize">{props.director}</span></li>
-            <li className="list-group-item">Release Date: <span className="text-capitalize">{props.release_date}</span></li>
+            <li className="list-group-item">Manufacturer: <span className="text-capitalize">{props.manufacturer}</span></li>
+            <li className="list-group-item">Max Speed: <span className="text-capitalize">{props.max_atmosphering_speed}</span></li>
+            <li className="list-group-item">Rating: <span className="text-capitalize">{props.hyperdrive_rating}</span></li>
           </ul>
           <div className="d-flex justify-content-between p-3">
             <div className="">
@@ -36,7 +36,7 @@ const FilmCard = (props) => {
             <div className="">
               <button
                 className="btn btn-outline-warning"
-                onClick={() => actions.addFavorite(props.title)}
+                onClick={() => actions.addFavorite(props.name)}
               >
                 <FontAwesomeIcon icon={faHeart} />
               </button>
@@ -48,13 +48,13 @@ const FilmCard = (props) => {
   );
 };
 
-FilmCard.propTypes = {
-  title: PropTypes.string,
-  episode_id: PropTypes.number,
-  director: PropTypes.string,
-  release_date: PropTypes.string,
+StarshipsCard.propTypes = {
+  name: PropTypes.string,
+  manufacturer: PropTypes.string,
+  max_atmosphering_speed: PropTypes.string,
+  hyperdrive_rating: PropTypes.string,
   id: PropTypes.number,
   url: PropTypes.string,
 };
 
-export default FilmCard;
+export default StarshipsCard;

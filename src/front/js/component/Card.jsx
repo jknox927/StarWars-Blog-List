@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const Card = (props) => {
-  const { store, actions } = useContext(Context);
+  const { actions } = useContext(Context);
 
   return (
     <div className="col">
@@ -30,7 +30,7 @@ const Card = (props) => {
               </Link>
             </div>
             <div className="">
-              <button className="btn btn-outline-warning" onClick={() => actions.addFavorites(props.name)}>
+              <button className="btn btn-outline-warning" onClick={() => actions.addFavorite(props.name)}>
                 <FontAwesomeIcon icon={faHeart} />
               </button>
             </div>
