@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
 
 // Import MVC Dependencies
 import { Context } from "../store/appContext.js";
@@ -8,10 +9,12 @@ import Card from "../component/Card.jsx";
 
 export const People = () => {
   const { store, actions } = useContext(Context);
+  const { id } = useParams();
 
   useEffect(() => {
     actions.getPeople();
-  }, [])
+    // actions.person(id);
+  }, []);
 
   return (
     <div className="container mb-5 pb-5 overflow-hidden">
@@ -28,7 +31,7 @@ export const People = () => {
                 gender={item.gender}
                 hair_color={item.hair_color}
                 birth_year={item.birth_year}
-                id={index}
+                id={index + 1}
               />
             </div>
           );

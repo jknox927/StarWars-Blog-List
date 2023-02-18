@@ -7,6 +7,7 @@ import injectContext from "./store/appContext";
 
 // Import Components
 import { Navbar } from "./component/navbar";
+import { Details } from "./pages/Details.jsx";
 import { Home } from "./pages/Home.jsx";
 import { People } from "./pages/People.jsx";
 import { Films } from "./pages/Films.jsx";
@@ -16,31 +17,30 @@ import { Species } from "./pages/Species.jsx";
 import { Planets } from "./pages/Planets.jsx";
 import { Footer } from "./component/footer";
 
-
 const Layout = () => {
+  const basename = process.env.BASENAME || "";
 
-    const basename = process.env.BASENAME || "";
-
-    return (
-        <div>
-            <BrowserRouter basename={basename}>
-                <ScrollToTop>
-                    <Navbar />
-                    <Routes>
-                        <Route element={<Home />} path="/" />
-                        <Route element={<People />} path="/people" />
-                        <Route element={<Films />} path="/films" />
-                        <Route element={<Starships />} path="/starships" />
-                        <Route element={<Vehicles />} path="/vehicles" />
-                        <Route element={<Species />} path="/species" />
-                        <Route element={<Planets />} path="/planets" />
-                        <Route element={<h1>Not found!</h1>} />
-                    </Routes>
-                    <Footer />
-                </ScrollToTop>
-            </BrowserRouter>
-        </div>
-    );
+  return (
+    <div>
+      <BrowserRouter basename={basename}>
+        <ScrollToTop>
+          <Navbar />
+          <Routes>
+            <Route element={<Home />} path="/" />
+            <Route element={<People />} path="/people/" />
+            <Route element={<Details />} path="/people/:id" />
+            <Route element={<Films />} path="/films/" />
+            <Route element={<Starships />} path="/starships/" />
+            <Route element={<Vehicles />} path="/vehicles/" />
+            <Route element={<Species />} path="/species/" />
+            <Route element={<Planets />} path="/planets/" />
+            <Route element={<h1>Not found!</h1>} />
+          </Routes>
+          <Footer />
+        </ScrollToTop>
+      </BrowserRouter>
+    </div>
+  );
 };
 
 export default injectContext(Layout);
