@@ -13,7 +13,6 @@ export const People = () => {
 
   useEffect(() => {
     actions.getPeople();
-    // actions.person(id);
   }, []);
 
   return (
