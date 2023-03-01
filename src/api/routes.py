@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, url_for, Blueprint
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
-from api.models import db, User, People
+from api.models import db, User, People, Films, Starships
 from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
@@ -36,11 +36,13 @@ def get_person():
 
 @api.route('/films', methods=['GET'])
 def get_films():
-    return "films"
+    req_films: Films = Films.query.all()
+    return jsonify(films = [films.serialize() for films in req_films])
 
 @api.route('/starships', methods=['GET'])
 def get_starships():
-    return "starships"
+    req_starships: Starships = Starships.query.all()
+    return jsonify(starships = [starships.serialize() for starships in req_starships])
 
 @api.route('/vehicles', methods=['GET'])
 def get_vehicles():

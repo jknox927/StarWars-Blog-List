@@ -19,8 +19,12 @@ class User(db.Model):
         return {
             "id": self.id,
             "email": self.email,
+            "profile_pic": self.profile_pic,
+            "username": self.username,
+            "is_active": self.is_active
             # do not serialize the password, its a security breach
         }
+
 
 class People(db.Model):
     __tablename__ = 'people'
@@ -65,6 +69,82 @@ class People(db.Model):
             "mass": self.mass,
             "skin_color": self.skin_color,
             "homeworld": self.homeworld,
+            "url": self.url,
+            "date_created": self.date_created,
+            "date_edited": self.date_edited
+        }
+
+
+class Films(db.Model):
+    __tablename__ = 'films'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(128))
+    episode_id = db.Column(db.Integer)
+    opening_crawl = db.Column(db.String(256))
+    director = db.Column(db.String(128))
+    producer = db.Column(db.String(128))
+    # release_date = db.Column(db.Datetime, default=datetime.date())
+    url = db.Column(db.String(256))
+    date_created = db.Column(db.DateTime, default=datetime.utcnow)
+    date_edited = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f'<Films {self.title}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "episode_id": self.episode_id,
+            "opening_crawl": self.opening_crawl,
+            "director": self.director,
+            "producer": self.producer,
+            # "release_date": self.release_date,
+            "url": self.url,
+            "date_created": self.date_created,
+            "date_edited": self.date_edited
+        }
+
+
+class Starships(db.Model):
+    __tablename__ = 'starships'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128))
+    model = db.Column(db.String(128))
+    starship_class = db.Column(db.String(128))
+    manufacturer = db.Column(db.String(128))
+    cost_in_credits = db.Column(db.Integer)
+    length = db.Column(db.Integer)
+    crew = db.Column(db.Integer)
+    passengers = db.Column(db.Integer)
+    max_atmosphering_speed = db.Column(db.Integer)
+    hyperdrive_rating = db.Column(db.String(64))
+    MGLT = db.Column(db.Integer)
+    cargo_capacity = db.Column(db.Integer)
+    consumables = db.Column(db.Integer)
+    url = db.Column(db.String(64))
+    date_created = db.Column(db.DateTime, default=datetime.utcnow)
+    date_edited = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f'<Starships {self.name}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.nae,
+            "model": self.model,
+            "starship_class": self.starship_class,
+            "manufacturer": self.manufacturer,
+            "cost_in_credits": self.cost_in_credits,
+            "length": self.length,
+            "crew": self.crew,
+            "passengers": self.passengers,
+            "max_atmosphering_speed": self.max_atmosphering_speed,
+            "hyperdrive_rating": self.hyperdrive_rating,
+            "MGLT": self.MGLT,
+            "cargo_capacity": self.cargo_capacity,
+            "consumables": self.consumables,
             "url": self.url,
             "date_created": self.date_created,
             "date_edited": self.date_edited
