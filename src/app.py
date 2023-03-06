@@ -6,7 +6,7 @@ from flask import Flask, request, jsonify, url_for, send_from_directory
 from flask_migrate import Migrate
 from flask_swagger import swagger
 from flask_cors import CORS
-from flask_jwt_extended import JWTManager
+# from flask_jwt_extended import JWTManager
 from api.utils import APIException, generate_sitemap
 from api.models import db
 from api.routes import api
@@ -32,8 +32,8 @@ MIGRATE = Migrate(app, db, compare_type = True)
 db.init_app(app)
 
 # Setup the Flask-JWT-Extended extension
-app.config["JWT_SECRET_KEY"] = "env variable of some variety - shane 2023"  # Change this!
-jwt = JWTManager(app)
+# app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET')  # Change this!
+# jwt = JWTManager(app)
 
 # Allow CORS requests to this API
 CORS(app)

@@ -6,11 +6,12 @@ db = SQLAlchemy()
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(128), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     profile_pic = db.Column(db.String(128), nullable=True)
-    username = db.Column(db.String(128), nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    favorites = db.relationship('Favorite', backref='user', lazy=True)
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -18,11 +19,26 @@ class User(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "username": self.username,
             "email": self.email,
             "profile_pic": self.profile_pic,
-            "username": self.username,
-            "is_active": self.is_active
+            "is_active": self.is_active,
+            "favorites": self.favorites
             # do not serialize the password, its a security breach
+        }
+
+class Favorite(db.Model):
+    __tablename__ = 'favorite'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __repr__(self):
+        return f'<Favorite {self.id}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            
         }
 
 
